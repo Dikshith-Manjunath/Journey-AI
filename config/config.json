@@ -1,0 +1,36 @@
+{
+  "site": {
+    "title": "Journey AI",
+    "base_url": "/",
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_width": "200",
+    "logo_height": "48",
+    "logo_text": "Journey AI"
+  },
+
+  "settings": {
+    "pagination": 4,
+    "summary_length": 200,
+    "blog_folder": "blogs"
+  },
+
+  "nav_button": {
+    "enable": true,
+    "label": "Get Started",
+    "link": "/contact"
+  },
+
+  "params": {
+    "contact_form_action": "",
+    "tag_manager_id": "",
+    "footer_content": "JourneyAI is a free AI-powered platform that generates personalized travel itineraries based on your preferences and trip duration.",
+    "copyright": "© Designed and Developed By Team Journey AI"
+  },
+
+  "metadata": {
+    "meta_author": "JourneyAI",
+    "meta_image": "",
+    "meta_description": "free AI-powered platform that generates personalized travel itineraries"
+  }
+}
