@@ -22,7 +22,7 @@ const ItineraryForm = ({ onItineraryGenerated, isLoading, setIsLoading }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/GenerateItinerary', {
+      const response = await fetch('/api/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
