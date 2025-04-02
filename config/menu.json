@@ -1,7 +1,7 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Home  ",
       "url": "/"
     },
     {
@@ -9,12 +9,16 @@
       "url": "/generate-itinerary"
     },
     {
-      "name": "Blog",
+      "name": "Blog  ",
       "url": "/blogs"
     },
     {
-      "name": "Contact",
+      "name": "Contact  ",
       "url": "/contact"
+    },
+    {
+      "name": "About Us  ",
+      "url": "/about"
     },
     {
       "name": "FAQ",

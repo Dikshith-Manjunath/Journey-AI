@@ -133,7 +133,8 @@ const ItineraryForm = ({ onItineraryGenerated, isLoading, setIsLoading }) => {
       <button
         type="submit"
         disabled={isLoading}
-        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300"
+        className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:bg-indigo-300"
+        style={{ backgroundColor: "#1b938c" }}
       >
         {isLoading ? 'Generating...' : 'Generate Itinerary'}
       </button>

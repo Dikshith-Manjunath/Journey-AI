@@ -9,26 +9,31 @@ banner:
 
 # feature
 feature: 
-  title: Something You Need To Know
+  title: Services offered by JourneyAI
   features:
-  - name: "Clean Code"
-    icon: "/images/code.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Object Oriented"
-    icon: "/images/oop.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "24h Service"
-    icon: "/images/user-clock.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Value for Money"
-    icon: "/images/love.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Faster Response"
-    icon: "/images/speedometer.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
-  - name: "Cloud Support"
-    icon: "/images/cloud.svg"
-    content: "Lorem ipsum dolor sit amet consectetur adipisicing elit quam nihil"
+  - name: "AI-Powered Itinerary Planning"
+    icon: "/images/ai-brain.svg"
+    content: "Get personalized travel plans tailored to your preferences using AI."
+
+  - name: "Real-Time Travel Updates"
+    icon: "/images/live-update.svg"
+    content: "Stay informed with real-time weather, traffic, and event updates."
+
+  - name: "Budget-Friendly Recommendations"
+    icon: "/images/money-saving.svg"
+    content: "Find the best hotels, flights, and experiences within your budget."
+
+  - name: "Multilingual Support"
+    icon: "/images/language.svg"
+    content: "Navigate new destinations easily with AI-driven language translation."
+
+  - name: "AI-Powered Travel Assistant"
+    icon: "/images/chatbot.svg"
+    content: "Get 24/7 support and instant travel suggestions from our AI assistant."
+
+  - name: "Sustainable Travel Suggestions"
+    icon: "/images/eco-friendly.svg"
+    content: "Choose eco-friendly accommodations and experiences to reduce your carbon footprint."
 
 # services
 services:

@@ -3,7 +3,7 @@ import React from 'react';
 const ItineraryDisplay = ({ itinerary }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto my-8">
-      <div className="bg-indigo-600 p-6 text-white">
+      <div className="p-6 text-white" style={{ backgroundColor: "#16938c" }}>
         <h1 className="text-3xl font-bold">{itinerary.destination}</h1>
         <div className="flex justify-between mt-2">
           <p>{itinerary.duration} Days</p>
