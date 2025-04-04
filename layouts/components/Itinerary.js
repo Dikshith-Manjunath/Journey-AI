@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Travel Itinerary Generator</title>
+        <title>Generate Travel Itinerary Using Llama-3</title>
         <meta name="description" content="Generate personalized travel itineraries for your next adventure" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -37,7 +37,8 @@ export default function Home() {
             <div className="flex justify-center items-center">
               <button 
                 onClick={() => setItinerary(null)} 
-                className="mb-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+                className="mb-6 px-4 py-2 text-white rounded transition-colors"
+                style={{ backgroundColor: "#1b938c" }}
               >
                 Create New Itinerary
               </button>
