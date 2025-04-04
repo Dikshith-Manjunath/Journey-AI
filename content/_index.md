@@ -12,27 +12,27 @@ feature:
   title: Services offered by JourneyAI
   features:
   - name: "AI-Powered Itinerary Planning"
-    icon: "/images/ai-brain.svg"
+    icon: "/images/services2/brain.png"
     content: "Get personalized travel plans tailored to your preferences using AI."
 
   - name: "Real-Time Travel Updates"
-    icon: "/images/live-update.svg"
+    icon: "/images/services2/liveUpdates.png"
     content: "Stay informed with real-time weather, traffic, and event updates."
 
   - name: "Budget-Friendly Recommendations"
-    icon: "/images/money-saving.svg"
+    icon: "/images/services2/budget.png"
     content: "Find the best hotels, flights, and experiences within your budget."
 
   - name: "Multilingual Support"
-    icon: "/images/language.svg"
+    icon: "/images/services2/language.png"
     content: "Navigate new destinations easily with AI-driven language translation."
 
   - name: "AI-Powered Travel Assistant"
-    icon: "/images/chatbot.svg"
+    icon: "/images/services2/chatbot.png"
     content: "Get 24/7 support and instant travel suggestions from our AI assistant."
 
   - name: "Sustainable Travel Suggestions"
-    icon: "/images/eco-friendly.svg"
+    icon: "/images/services2/sustainable.png"
     content: "Choose eco-friendly accommodations and experiences to reduce your carbon footprint."
 
 # services

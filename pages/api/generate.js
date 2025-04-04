@@ -1,12 +1,59 @@
 // File: pages/api/generate-itinerary.js
-//Nvidia Llama Nemotron 70b params key: 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
 import OpenAI from 'openai';
+import mongoose from 'mongoose';
+import Itinerary from '../../models/Itinerary';
 
 // Initialize the OpenAI client with NVIDIA API endpoint
 const openai = new OpenAI({
-  apiKey: process.env.NVIDIA_API_KEY, // Store this in your .env file
+  apiKey: process.env.NVIDIA_API_KEY,
   baseURL: 'https://integrate.api.nvidia.com/v1',
 });
+
+// MongoDB connection function
+const connectDB = async () => {
+  if (mongoose.connections[0].readyState) {
+    return; // If already connected, return
+  }
+  try {
+    await mongoose.connect(process.env.MONGODB_URI, {
+    });
+    console.log('MongoDB connected successfully');
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    throw new Error('MongoDB connection failed');
+  }
+};
+
+// Function to fetch image from Unsplash
+async function getUnsplashImage(query) {
+  try {
+    const response = await fetch(
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=1`,
+      {
+        headers: {
+          Authorization: `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`,
+        },
+      }
+    );
+    
+    const data = await response.json();
+    const landscapeImage = data.results.find(img => img.width > img.height);
+    
+    if (data.results && data.results.length > 0) {
+      const image = data.results[0];
+      return {
+        url: image.urls.regular,
+        author: image.user.name,
+        description: image.description || image.alt_description || '',
+      };
+    }
+    
+    return null;
+  } catch (error) {
+    console.error('Error fetching Unsplash image:', error);
+    return null;
+  }
+}
 
 export default async function handler(req, res) {
   // Only allow POST requests
@@ -15,6 +62,9 @@ export default async function handler(req, res) {
   }
 
   try {
+    // Connect to MongoDB
+    await connectDB();
+    
     const { destination, duration, budget, travelerType, interests } = req.body;
 
     // Validate required parameters
@@ -37,22 +87,46 @@ export default async function handler(req, res) {
       interests: interests || [],
     });
 
-    // Call NVIDIA API instead of Ollama
+    // Call NVIDIA API
     const itineraryData = await generateItineraryWithNvidia(prompt);
+    
+    // Get image from Unsplash
+    const imageQuery = `travel ${destination} landmark`;
+    const imageData = await getUnsplashImage(imageQuery);
+    
+    // Create a new itinerary document
+    const itineraryDoc = new Itinerary({
+      ...itineraryData,
+      travelerType,
+      interests: interests || [],
+      thumbnailUrl: imageData?.url || '',
+      thumbnailAuthor: imageData?.author || '',
+      thumbnailDescription: imageData?.description || '',
+    });
+    
+    // Save to database
+    await itineraryDoc.save();
 
     console.timeEnd('itinerary-generation');
-    console.log('Itinerary generation complete');
+    console.log('Itinerary generation complete and saved to database');
 
-    // Return the generated itinerary
+    // Return the generated itinerary with database ID
     res.status(200).json({
       success: true,
-      data: itineraryData,
+      data: {
+        ...itineraryData,
+        _id: itineraryDoc._id,
+        thumbnailUrl: imageData?.url || '',
+        thumbnailAuthor: imageData?.author || '',
+        thumbnailDescription: imageData?.description || '',
+      },
     });
   } catch (error) {
     console.error('Itinerary generation error:', error);
     res.status(500).json({
       success: false,
       error: 'Failed to generate itinerary. Please try again later.',
+      details: error.message,
     });
   }
 }
@@ -109,7 +183,7 @@ Return the response in JSON format with the following structure:
 }`;
 }
 
-// New function to use NVIDIA API instead of Ollama
+// Function to use NVIDIA API (unchanged)
 async function generateItineraryWithNvidia(prompt) {
   try {
     console.log('Calling NVIDIA API with Llama 3.1 Nemotron model...');
@@ -138,7 +212,6 @@ async function generateItineraryWithNvidia(prompt) {
     
     try {
       // Extract JSON from the response using regex
-      // This looks for content between JSON code fences (```json and ```)
       const jsonMatch = completeResponse.match(/```(?:json)?\s*(\{[\s\S]*?\})\s*```/);
       
       let jsonString;

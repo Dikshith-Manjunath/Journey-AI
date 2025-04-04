@@ -23,6 +23,10 @@
     {
       "name": "FAQ",
       "url": "/faq"
+    },
+    {
+      "name": "Template",
+      "url": "/template"
     }
   ],
   "footer": [

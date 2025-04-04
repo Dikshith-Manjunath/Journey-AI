@@ -1,4 +1,4 @@
 ---
-title: "Latest news"
-description: "this is meta description"
+title: "Generated Itineraries"
+description: "These are the pre-generated Itineraries to select from"
 ---
