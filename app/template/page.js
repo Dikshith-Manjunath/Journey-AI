@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 const TravelItineraryTemplate = () => {
   // Sample data from your JSON
@@ -171,11 +171,13 @@ const TravelItineraryTemplate = () => {
       {/* Header Section */}
       <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
         <div className="relative h-64">
+          <div style={{ position: 'relative', width: '100%', height: '400px' }}>
           <img 
             src={itineraryData.thumbnailUrl || "/api/placeholder/1000/400"} 
             alt={itineraryData.thumbnailDescription || "Destination Image"} 
             className="w-full h-full object-cover"
           />
+          </div>
           <div className="absolute inset-0 bg-black bg-opacity-40 flex items-end">
             <div className="p-6 text-white">
               <h1 className="text-3xl font-bold">{itineraryData.destination}</h1>
@@ -200,8 +202,8 @@ const TravelItineraryTemplate = () => {
           <span>Estimated Cost: ${itineraryData.totalCost}</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2.5">
-          <div 
-            className={`h-2.5 rounded-full ${budgetPercentage > 90 ? 'bg-red-500' : 'bg-green-500'}`} 
+          <div
+            className={`h-2.5 rounded-full ${budgetPercentage > 90 ? 'bg-red-500' : 'bg-green-500'}`}
             style={{ width: `${Math.min(budgetPercentage, 100)}%` }}
           ></div>
         </div>
@@ -227,11 +229,11 @@ const TravelItineraryTemplate = () => {
           <button
             key={day.day}
             onClick={() => handleDayClick(day.day)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap ${
-              activeDay === day.day
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
-            }`}
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap`}
+              style={{
+                backgroundColor: activeDay === day.day ? '#0aa8a7' : 'rgb(229,231,235)',
+                color: 'rgb(75,85,99)'
+              }}
           >
             Day {day.day}: {day.title}
           </button>
@@ -241,7 +243,7 @@ const TravelItineraryTemplate = () => {
       {/* Active Day Itinerary */}
       {itineraryData.itinerary.filter(day => day.day === activeDay).map((day) => (
         <div key={day.day} className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="bg-blue-600 text-white p-4">
+          <div className="bg-[#0aa8a7] text-white p-4">
             <h2 className="text-xl font-bold">Day {day.day}: {day.title}</h2>
           </div>
           <div className="p-6">
