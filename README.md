@@ -63,7 +63,7 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js, Tailwind CSS
-- **Backend:** Node.js, Express, PostgreSQL
+- **Backend:** Next.js, MongoDB, PostgreSQL
 - **AI Models:** OpenAI API / Custom ML Model
 
 ---
@@ -72,7 +72,7 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
 
 For support or inquiries, reach out to us at:
 
-- 📧 Email: [support@journeyai.com](mailto\:support@journeyai.com)
+- 📧 Email: [dikshithrrddy@gmail.com](mailto\:support@journeyai.com)
 - 🌐 Website: [www.journeyai.com](https://www.journeyai.com)
 
 ---
