@@ -92,6 +92,17 @@ const Header = () => {
                   )}
                 </React.Fragment>
               ))}
+              {/* Add SignIn and SignUp Links */}
+              <li className="nav-item">
+                <Link href="/signin" className="nav-link block">
+                  Sign In
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/signup" className="nav-link block">
+                  Sign Up
+                </Link>
+              </li>
               {enable && (
                 <li className="md:hidden">
                   <Link
