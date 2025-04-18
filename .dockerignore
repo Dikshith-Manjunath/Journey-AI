@@ -7,7 +7,7 @@ yarn-error.log
 # Next.js build output
 .next
 out
-
+#new data
 # Development environment files
 .env.local
 .env.development.local
