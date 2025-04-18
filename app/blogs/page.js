@@ -110,7 +110,7 @@ const ItineraryDetail = ({ itinerary, onBack }) => {
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <button 
         onClick={onBack}
-        className="px-4 py-2 bg-[#0aa8a7] text-white rounded m-4 hover:bg-blue-700"
+        className="px-4 py-2 bg-[#0aa8a7] text-white rounded m-4 hover:bg-[#33bdbc]"
       >
         ← Back to All Itineraries
       </button>
