@@ -73,7 +73,7 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
 For support or inquiries, reach out to us at:
 
 - 📧 Email: [dikshithrrddy@gmail.com](mailto\:support@journeyai.com)
-- 🌐 Website: [www.journeyai.com](https://www.journeyai.com)
+- 🌐 Website: [www.journeyai.shop](https://www.journeyai.shop)
 
 ---
 
