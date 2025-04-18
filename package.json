@@ -1,9 +1,8 @@
 {
-  "name": "bigspring-light-nextjs",
-  "description": "a nextjs and tailwindcss SAAS starter template",
-  "version": "2.0.0",
+  "name": "journey-ai",
+  "description": "AI travel blog website built with Next.js, Tailwind CSS, and llama",
+  "version": "1.0.0",
   "private": true,
-  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
