@@ -186,7 +186,7 @@ Return the response in JSON format with the following structure:
 // Function to use NVIDIA API (unchanged)
 async function generateItineraryWithNvidia(prompt) {
   try {
-    console.log('Calling NVIDIA API with Llama 3.1 Nemotron model...');
+    console.log('Calling NVIDIA API with Nemotron-Ultra model...');
     
     let completeResponse = '';
     
