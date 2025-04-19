@@ -1,7 +1,7 @@
 {
   "main": [
     {
-      "name": "Home  ",
+      "name": "Home",
       "url": "/"
     },
     {
@@ -9,24 +9,20 @@
       "url": "/generate-itinerary"
     },
     {
-      "name": "Blog  ",
+      "name": "Itineraries",
       "url": "/blogs"
     },
     {
-      "name": "Contact  ",
+      "name": "Contact",
       "url": "/contact"
     },
     {
-      "name": "About Us  ",
+      "name": "About Us",
       "url": "/about"
     },
     {
       "name": "FAQ",
       "url": "/faq"
-    },
-    {
-      "name": "Template",
-      "url": "/template"
     }
   ],
   "footer": [
@@ -42,7 +38,7 @@
           "url": "/generate-itinerary"
         },
         {
-          "text": "Blog",
+          "text": "Itineraries",
           "url": "/blogs"
         }
       ]
