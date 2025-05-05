@@ -43,7 +43,7 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
 
 1. Clone this repository:
    ```sh
-   git clone https://github.com/yourusername/JourneyAI.git
+   git clone https://github.com/Dikshith-Manjunath/JourneyAI.git
    ```
 2. Navigate to the project directory:
    ```sh
