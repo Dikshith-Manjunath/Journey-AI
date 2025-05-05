@@ -47,11 +47,11 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
    ```
 2. Navigate to the project directory:
    ```sh
-   cd JourneyAI
+   cd Journey-AI
    ```
 3. Install dependencies:
    ```sh
-   npm install
+   npm install --legacy-peer-deps 
    ```
 4. Start the application:
    ```sh
@@ -63,8 +63,8 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js, Tailwind CSS
-- **Backend:** Next.js, MongoDB, PostgreSQL
-- **AI Models:** OpenAI API / Custom ML Model
+- **Backend:** Node JS, Next.js, MongoDB, PostgreSQL
+- **AI Models:** NVIDIA llama 3.1 Nemotron model / Custom ML Model
 
 ---
 
