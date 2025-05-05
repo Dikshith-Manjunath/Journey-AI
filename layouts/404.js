@@ -1,4 +1,6 @@
 import { markdownify } from "@lib/utils/textConverter";
+//This is file to make give the 404 not found page, but actually it is because I haven't committed to my repo through linux yet and I need to setup SSH
+
 
 const NotFound = ({ data }) => {
   const { frontmatter, content } = data;
