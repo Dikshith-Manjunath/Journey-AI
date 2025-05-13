@@ -1,21 +1,19 @@
 "use client";
 
+import { useContext, useState } from 'react';
+import { LanguageContext } from '../../context/LanguageContext';
 import menu from "@config/menu.json";
+import config from "@config/config.json";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
-import config from "../../config/config.json";
+import React from "react";
 
 const Header = () => {
   const pathname = usePathname();
-
-  // distructuring the main menu from menu object
   const { main } = menu;
-
-  // states declaration
+  const { setLanguage } = useContext(LanguageContext);
   const [navOpen, setNavOpen] = useState(false);
-
-  // logo source
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const { enable, label, link } = config.nav_button;
 
   return (
@@ -92,17 +90,6 @@ const Header = () => {
                   )}
                 </React.Fragment>
               ))}
-              {/* Add SignIn and SignUp Links */}
-              <li className="nav-item">
-                <Link href="/signin" className="nav-link block">
-                  Sign In
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/signup" className="nav-link block">
-                  Sign Up
-                </Link>
-              </li>
               {enable && (
                 <li className="md:hidden">
                   <Link
@@ -118,7 +105,36 @@ const Header = () => {
           </div>
         </nav>
         
-        {/* This empty div helps balance the hamburger menu for proper centering */}
+        {/* Language Switcher */}
+        <div className="relative">
+          <button
+            className="flex cursor-pointer items-center"
+            onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+          >
+            {/* Earth Icon SVG */}
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.055 11H13V9H3.055C3.018 8.678 3 8.341 3 8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .34-.018 .678-.055 1H21M3.055 11a7.966 7.966 0 010 2H13v-2H3.055zm17.945 0a7.966 7.966 0 000 2H11v-2h9.945zM7 16c0 2.21 1.79 4 4 4s4-1.79 4-4c0-.34.018-.678.055-1H21v-2h-9.945C11.982 15.322 12 15.66 12 16z" />
+            </svg>
+          </button>
+          {langDropdownOpen && (
+            <ul className="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-lg z-10">
+              {config.supported_languages.map((lang) => (
+                <li key={lang.code}>
+                  <button
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 w-full text-left"
+                    onClick={() => {
+                      setLanguage(lang.code);
+                      setLangDropdownOpen(false);
+                    }}
+                  >
+                    {lang.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
         <div className="md:hidden"></div>
       </div>
     </header>

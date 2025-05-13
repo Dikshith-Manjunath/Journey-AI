@@ -1,12 +1,25 @@
+"use client";
+import { useContext } from "react";
+import { LanguageContext } from "../../context/LanguageContext";
 import { markdownify } from "@lib/utils/textConverter";
 import Image from "next/image";
 
+// Helper to get the correct language string, fallback to English or first available
+const getLangString = (obj, language) => {
+  if (!obj) return "";
+  if (typeof obj === "string") return obj;
+  return obj[language] || obj["en"] || Object.values(obj)[0] || "";
+};
+
 const HomeFeatures = ({ feature }) => {
+  const { language } = useContext(LanguageContext);
+
   return (
     <section className="section bg-theme-light">
       <div className="container">
         <div className="text-center">
-          <h2>{markdownify(feature.title)}</h2>
+          {/* Section title with markdown support */}
+          {markdownify(getLangString(feature.title, language), "h2")}
         </div>
         <div className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {feature.features.map((item, i) => (
@@ -24,8 +37,10 @@ const HomeFeatures = ({ feature }) => {
                 />
               )}
               <div className="mt-4">
-                {markdownify(item.name, "h3", "h5")}
-                <p className="mt-3">{item.content}</p>
+                {/* Feature name with markdown support */}
+                {markdownify(getLangString(item.name, language), "h3", "h5")}
+                {/* Feature content with markdown support */}
+                {markdownify(getLangString(item.content, language), "p", "mt-3")}
               </div>
             </div>
           ))}
@@ -36,3 +51,6 @@ const HomeFeatures = ({ feature }) => {
 };
 
 export default HomeFeatures;
+
+
+

@@ -5,6 +5,7 @@ import Footer from "@layouts/partials/Footer";
 import Header from "@layouts/partials/Header";
 import Providers from "@layouts/partials/Providers";
 import "../styles/style.scss";
+import { LanguageProvider } from '../context/LanguageContext';
 
 export const metadata = {
   title: "Journey AI",
@@ -56,11 +57,14 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning={true}>
-        <TwSizeIndicator />
-        <Header />
-        <Providers>{children}</Providers>
-        <Footer />
+        <LanguageProvider>
+          <TwSizeIndicator />
+          <Header />
+          <Providers>{children}</Providers>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
 }
+
