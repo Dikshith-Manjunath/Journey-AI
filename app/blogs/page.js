@@ -26,11 +26,27 @@ const TravelBlog = () => {
     fetchItineraries();
   }, []);
 
-  const formatBudget = (amount) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
+  const formatCurrency = (amount, currency = 'USD') => {
+    // Get currency symbol
+    const currencySymbols = {
+      'USD': '$',
+      'EUR': '€',
+      'GBP': '£',
+      'JPY': '¥',
+      'AUD': 'A$',
+      'CAD': 'C$',
+      'CHF': 'CHF',
+      'CNY': '¥',
+      'INR': '₹',
+      'MXN': 'MX$',
+      'SGD': 'S$',
+      'NZD': 'NZ$',
+      'THB': '฿',
+      'AED': 'د.إ',
+    };
+
+    const symbol = currencySymbols[currency] || currency;
+    return `${symbol}${amount}`;
   };
 
   if (loading) return <div className="text-center py-10">Loading itineraries...</div>;
@@ -39,19 +55,21 @@ const TravelBlog = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center mb-8">Travel Itineraries</h1>
-      
+
       {selectedItinerary ? (
-        <ItineraryDetail 
-          itinerary={selectedItinerary} 
+        <ItineraryDetail
+          itinerary={selectedItinerary}
           onBack={() => setSelectedItinerary(null)}
+          formatCurrency={formatCurrency}
         />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {itineraries.map((itinerary) => (
-            <ItineraryCard 
-              key={itinerary._id.$oid} 
+            <ItineraryCard
+              key={itinerary._id.$oid}
               itinerary={itinerary}
               onClick={() => setSelectedItinerary(itinerary)}
+              formatCurrency={formatCurrency}
             />
           ))}
         </div>
@@ -60,28 +78,28 @@ const TravelBlog = () => {
   );
 };
 
-const ItineraryCard = ({ itinerary, onClick }) => {
+const ItineraryCard = ({ itinerary, onClick, formatCurrency }) => {
   return (
-    <div 
+    <div
       className="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow duration-300"
       onClick={onClick}
     >
       <div className="relative h-48">
-        <img 
-          src={itinerary.thumbnailUrl} 
-          alt={itinerary.thumbnailDescription || itinerary.destination} 
+        <img
+          src={itinerary.thumbnailUrl}
+          alt={itinerary.thumbnailDescription || itinerary.destination}
           className="w-full h-full object-cover"
         />
         <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-2">
           <p className="text-xs">Photo by {itinerary.thumbnailAuthor}</p>
         </div>
       </div>
-      
+
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{itinerary.destination}</h2>
         <div className="flex justify-between text-sm mb-2">
           <span>{itinerary.duration} Days</span>
-          <span className="font-semibold">${itinerary.budget}</span>
+          <span className="font-semibold">{formatCurrency(itinerary.budget, itinerary.currency)}</span>
         </div>
         <div className="text-sm text-gray-600">
           <p>Traveler: {itinerary.travelerType}</p>
@@ -94,35 +112,35 @@ const ItineraryCard = ({ itinerary, onClick }) => {
   );
 };
 
-const ItineraryDetail = ({ itinerary, onBack }) => {
+const ItineraryDetail = ({ itinerary, onBack, formatCurrency }) => {
   const [activeDay, setActiveDay] = useState(1);
-  
+
   // Calculate budget percentage
-  const budgetPercentage = itinerary.totalCost 
-    ? Math.round((itinerary.totalCost / itinerary.budget) * 100) 
+  const budgetPercentage = itinerary.totalCost
+    ? Math.round((itinerary.totalCost / itinerary.budget) * 100)
     : 0;
-  
+
   const handleDayClick = (day) => {
     setActiveDay(day);
   };
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <button 
+      <button
         onClick={onBack}
         className="px-4 py-2 bg-[#0aa8a7] text-white rounded m-4 hover:bg-[#33bdbc]"
       >
         ← Back to All Itineraries
       </button>
-      
+
       <div className="max-w-6xl mx-auto p-6 bg-gray-50">
         {/* Header Section */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden mb-6">
           <div className="relative h-64">
             <div style={{ position: 'relative', width: '100%', height: '400px' }}>
-              <img 
-                src={itinerary.thumbnailUrl || "/api/placeholder/1000/400"} 
-                alt={itinerary.thumbnailDescription || "Destination Image"} 
+              <img
+                src={itinerary.thumbnailUrl || "/api/placeholder/1000/400"}
+                alt={itinerary.thumbnailDescription || "Destination Image"}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -146,8 +164,8 @@ const ItineraryDetail = ({ itinerary, onBack }) => {
         <div className="bg-white rounded-lg shadow-md p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">Budget Overview</h2>
           <div className="flex justify-between items-center mb-2">
-            <span>Total Budget: ${itinerary.budget}</span>
-            <span>Estimated Cost: ${itinerary.totalCost || 0}</span>
+            <span>Total Budget: {formatCurrency(itinerary.budget, itinerary.currency)}</span>
+            <span>Estimated Cost: {formatCurrency(itinerary.totalCost || 0, itinerary.currency)}</span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2.5">
             <div
@@ -166,7 +184,7 @@ const ItineraryDetail = ({ itinerary, onBack }) => {
                     <p className="font-medium">{item.category}</p>
                     <p className="text-sm text-gray-600">{item.details}</p>
                   </div>
-                  <p className="font-semibold">${item.amount}</p>
+                  <p className="font-semibold">{formatCurrency(item.amount, itinerary.currency)}</p>
                 </div>
               ))}
             </div>
@@ -211,7 +229,9 @@ const ItineraryDetail = ({ itinerary, onBack }) => {
                       <h3 className="font-medium text-lg">{activity.activity}</h3>
                       {activity.notes && <p className="text-gray-600 mt-1">{activity.notes}</p>}
                       {activity.cost > 0 && (
-                        <p className="text-gray-700 font-medium mt-1">Cost: ${activity.cost}</p>
+                        <p className="text-gray-700 font-medium mt-1">
+                          Cost: {formatCurrency(activity.cost, itinerary.currency)}
+                        </p>
                       )}
                     </div>
                   </div>
