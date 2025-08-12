@@ -60,6 +60,25 @@ Journey AI is an intelligent travel assistant designed to make your trips seamle
 
 ---
 
+## Docker Containerization
+
+1. Docker Build:
+   ```sh
+   docker build -t my-project .
+   ```
+2. Docker Run:
+   ```sh
+   docker run -d -p 3000:3000 \
+     -e NVIDIA_API_KEY=your_nvidia_api_key \
+     -e MONGODB_URI=your_mongodb_uri \
+     -e MONGODB_DB=your_db_name \
+     -e UNSPLASH_ACCESS_KEY=your_unsplash_access_key \
+     -e UNSPLASH_SECRET_KEY=your_unsplash_secret_key \
+     my-project
+   ```
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Frontend:** Next.js, Tailwind CSS
