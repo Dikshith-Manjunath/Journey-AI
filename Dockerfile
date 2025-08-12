@@ -5,7 +5,7 @@
     
     # Copy and install dependencies
     COPY package*.json ./
-    RUN npm ci
+    RUN npm i
     
     # Copy the rest of the app
     COPY . .
